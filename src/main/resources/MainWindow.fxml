@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<Pane maxHeight="560.0" maxWidth="500.0" minHeight="530.0" minWidth="500.0" prefHeight="560.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.atos.laa.rotas.demo.MainWindowController">
+
+    <children>
+        <Label layoutX="35.0" layoutY="20.0" text="Rota Data">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label layoutX="35.0" layoutY="54.0" text="Dataset File" />
+        <TextField fx:id="datasetPath" editable="false" layoutX="105.0" layoutY="51.0" prefHeight="25.0" prefWidth="330.0" promptText="Choose file" />
+        <Button fx:id="btnChooseFile" layoutX="440.0" layoutY="51.0" mnemonicParsing="false" onAction="#chooseDatasetClicked" text="..." />
+        <Label layoutX="35.0" layoutY="88.0" text="Excel Sheet" />
+        <TextField fx:id="sheetName" disable="true" layoutX="105.0" layoutY="85.0" prefHeight="25.0" prefWidth="322.0" promptText="Sheet name" />
+        <Button fx:id="btnSheetNameEntered" disable="true" layoutX="432.0" layoutY="85.0" mnemonicParsing="false" onAction="#sheetNameEnteredClicked" text="OK" />
+
+
+        <Label layoutX="35.0" layoutY="117.0" text="Rota Template">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="dateStart" disable="true" editable="false" layoutX="35.0" layoutY="148.0" prefHeight="25.0" prefWidth="210.0" promptText="Start date" />
+        <DatePicker fx:id="dateEnd" disable="true" layoutX="255.0" layoutY="148.0" onAction="#endDateSelected" prefHeight="25.0" prefWidth="210.0" promptText="End date" />
+
+        <Label layoutX="35.0" layoutY="187.0" text="Column list" />
+        <Button fx:id="btnAdd" disable="true" layoutX="360.0" layoutY="183.0" mnemonicParsing="false" onAction="#addColumnClicked" text="Add" />
+        <Button fx:id="btnRemove" disable="true" layoutX="405.0" layoutY="183.0" mnemonicParsing="false" onAction="#removeColumnClicked" text="Remove" />
+
+        <TableView fx:id="table" layoutX="35.0" layoutY="218.0" prefHeight="200.0" prefWidth="430.0">
+            <columns>
+                <TableColumn fx:id="columnTitle" editable="false" maxWidth="170.0" prefWidth="170.0" sortable="false" text="Title" />
+                <TableColumn fx:id="columnType" maxWidth="80.0" minWidth="66.0" prefWidth="66.0" resizable="false" sortable="false" text="Type" />
+                <TableColumn fx:id="columnScheme" maxWidth="200.0" minWidth="95.0" prefWidth="131.0" sortable="false" text="Schemes" />
+                <TableColumn fx:id="columnPattern" prefWidth="63.0" sortable="false" text="Pattern" />
+            </columns>
+        </TableView>
+
+
+        <Label layoutX="35.0" layoutY="430.0" text="Output (MS Excel)">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="outputFolder" disable="true" layoutX="35.0" layoutY="461.0" prefHeight="25.0" prefWidth="400.0" promptText="Choose destination folder" />
+        <Button fx:id="btnDestination" disable="true" layoutX="441.0" layoutY="461.0" mnemonicParsing="false" onAction="#chooseOutputFolderClicked" text="..." />
+
+
+        <Button fx:id="btnGenerate" disable="true" layoutX="35.0" layoutY="521.0" mnemonicParsing="false" onAction="#generateClicked" text="Generate" />
+        <Button fx:id="btnReset" cancelButton="true" disable="true" layoutX="270.0" layoutY="183.0" mnemonicParsing="false" onAction="#resetClicked" text="Reset Table" />
+        <Text layoutX="339.0" layoutY="538.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rota Scheduler (c) 2019" />
+
+
+        <Separator layoutX="20.0" layoutY="28.0" orientation="VERTICAL" prefHeight="479.0" />
+        <Separator layoutX="480.0" layoutY="28.0" orientation="VERTICAL" prefHeight="479.0" />
+        <Separator layoutX="120.0" layoutY="125.0" prefHeight="3.0" prefWidth="361.0" />
+        <Separator layoutX="141.0" layoutY="438.0" prefHeight="3.0" prefWidth="340.0" />
+        <Separator layoutX="95.0" layoutY="28.0" prefWidth="386.0" />
+        <Separator layoutX="22.0" layoutY="28.0" prefHeight="3.0" prefWidth="4.0" />
+        <Separator layoutX="22.0" layoutY="125.0" prefHeight="3.0" prefWidth="4.0" />
+        <Separator layoutX="22.0" layoutY="438.0" prefHeight="3.0" prefWidth="4.0" />
+        <Separator layoutX="21.0" layoutY="506.0" prefHeight="3.0" prefWidth="460.0" />
+      <Button fx:id="btnCancel" cancelButton="true" layoutX="110.0" layoutY="521.0" mnemonicParsing="false" onAction="#cancelClicked" text="Cancel" />
+    </children>
+</Pane>
