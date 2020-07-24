@@ -1,31 +1,32 @@
 package net.atos.laa.rotas.algorithm.dataset;
 
 public class Solicitor {
-    private int solicitorId;
-    private String name;
-    private int firmId;
-    private int schemeId;
 
-    public Solicitor(int solicitorId, String name, int firmId, int schemeId) {
-        this.solicitorId = solicitorId;
-        this.name = name;
-        this.firmId = firmId;
-        this.schemeId = schemeId;
-    }
+  private final int solicitorId;
+  private final String name;
+  private final int firmId;
+  private final int schemeId;
 
-    public int getSolicitorId() {
-        return solicitorId;
-    }
+  public Solicitor(int solicitorId, String name, int firmId, int schemeId) {
+    this.solicitorId = solicitorId;
+    this.name = name;
+    this.firmId = firmId;
+    this.schemeId = schemeId;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public int getSolicitorId() {
+    return solicitorId;
+  }
 
-    public int getFirmId() {
-        return firmId;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public int getSchemeId() {
-        return schemeId;
-    }
+  public int getFirmId() {
+    return firmId;
+  }
+
+  public int getSchemeId() {
+    return schemeId;
+  }
 }

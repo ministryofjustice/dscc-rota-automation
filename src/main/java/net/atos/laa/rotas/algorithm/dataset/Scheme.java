@@ -1,29 +1,30 @@
 package net.atos.laa.rotas.algorithm.dataset;
 
 public class Scheme {
-    private int schemeId;
-    private String name;
 
-    /**
-     * @param schemeId The unique ID of the scheme
-     * @param name The name of the scheme
-     */
+  private final int schemeId;
+  private final String name;
 
-    public Scheme(int schemeId, String name) {
-        this.schemeId = schemeId;
-        this.name = name;
-    }
+  /**
+   * @param schemeId The unique ID of the scheme
+   * @param name The name of the scheme
+   */
 
-    public int getSchemeId() {
-        return schemeId;
-    }
+  public Scheme(int schemeId, String name) {
+    this.schemeId = schemeId;
+    this.name = name;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public int getSchemeId() {
+    return schemeId;
+  }
 
-    @Override
-    public String toString() {
-        return getName();
-    }
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public String toString() {
+    return getName();
+  }
 }

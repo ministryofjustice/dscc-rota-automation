@@ -9,92 +9,89 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Manages access to a single source of rota data in SQLite3 format. Enables
- * access to the list of schemes and the list of solicitors for each scheme,
- * that are stored in the dataset.
+ * Manages access to a single source of rota data in SQLite3 format. Enables access to the list of
+ * schemes and the list of solicitors for each scheme, that are stored in the dataset.
  */
 public class SQLiteDataset implements Dataset {
 
-    /**
-     * Stores the connection to the database
-     */
-    private Connection connection;
+  /**
+   * Stores the connection to the database
+   */
+  private final Connection connection;
 
 
-    /**
-     * Creates and opens a connection to a dataset for accessing data in the
-     * SQlite3 format
-     * @param sourceFilePath The path to the dataset file
-     * @throws FileNotFoundException
-     * @throws SQLException
-     */
-    public SQLiteDataset(String sourceFilePath) throws FileNotFoundException, SQLException {
+  /**
+   * Creates and opens a connection to a dataset for accessing data in the SQlite3 format
+   *
+   * @param sourceFilePath The path to the dataset file
+   */
+  public SQLiteDataset(String sourceFilePath) throws FileNotFoundException, SQLException {
 
-        // Check if the specified dataset file exists
-        if (!new File(sourceFilePath).exists()) {
-            throw new FileNotFoundException("Dataset file does not exist");
-        }
-
-        connection = DriverManager.getConnection("jdbc:sqlite:" + sourceFilePath);
+    // Check if the specified dataset file exists
+    if (!new File(sourceFilePath).exists()) {
+      throw new FileNotFoundException("Dataset file does not exist");
     }
 
-    @Override
-    public ArrayList<Scheme> getSchemes() {
-        ArrayList<Scheme> schemes = new ArrayList<>();
+    connection = DriverManager.getConnection("jdbc:sqlite:" + sourceFilePath);
+  }
 
-        try {
-            String query = "SELECT * FROM schemes";
-            ResultSet result = connection.createStatement().executeQuery(query);
+  @Override
+  public ArrayList<Scheme> getSchemes() {
+    ArrayList<Scheme> schemes = new ArrayList<>();
 
-            // Add each returned scheme to the list
-            while (result.next()) {
-                schemes.add(new Scheme(
-                        result.getInt("scheme_id"),
-                        result.getString("name")
-                ));
-            }
+    try {
+      String query = "SELECT * FROM schemes";
+      ResultSet result = connection.createStatement().executeQuery(query);
 
-        } catch (Exception e) {
-            return null;
-        }
+      // Add each returned scheme to the list
+      while (result.next()) {
+        schemes.add(new Scheme(
+            result.getInt("scheme_id"),
+            result.getString("name")
+        ));
+      }
 
-        return schemes;
+    } catch (Exception e) {
+      return null;
     }
 
-    @Override
-    public ArrayList<Solicitor> getSolicitorsForScheme(int schemeId) {
-        ArrayList<Solicitor> solicitors = new ArrayList<>();
+    return schemes;
+  }
 
-        try {
-            // Query the database to get the solicitors
-            String query = "SELECT * FROM solicitors WHERE scheme_id = " + schemeId;
-            ResultSet result = connection.createStatement().executeQuery(query);
+  @Override
+  public ArrayList<Solicitor> getSolicitorsForScheme(int schemeId) {
+    ArrayList<Solicitor> solicitors = new ArrayList<>();
 
-            // Add each returned scheme to the list
-            while (result.next()) {
-                solicitors.add(new Solicitor(result.getInt("solicitor_id"),
-                        result.getString("name"), result.getInt("firm_id"), result.getInt("scheme_id")
-                ));
-            }
+    try {
+      // Query the database to get the solicitors
+      String query = "SELECT * FROM solicitors WHERE scheme_id = " + schemeId;
+      ResultSet result = connection.createStatement().executeQuery(query);
 
-        } catch (SQLException e) {
-            return null;
-        }
+      // Add each returned scheme to the list
+      while (result.next()) {
+        solicitors.add(new Solicitor(result.getInt("solicitor_id"),
+            result.getString("name"), result.getInt("firm_id"), result.getInt("scheme_id")
+        ));
+      }
 
-        return solicitors;
+    } catch (SQLException e) {
+      return null;
     }
 
-    @Override
-    public boolean disconnect() {
-        try {
-            if (connection != null) {
-                connection.close();
-                return true;
-            }
+    return solicitors;
+  }
 
-        } catch (Exception ignored) {
-        }
+  @Override
+  public boolean disconnect() {
+    try {
+      if (connection != null) {
+        connection.close();
+        return true;
+      }
 
-        return false;
+    } catch (Exception ignored) {
     }
+
+    return false;
+  }
 }
