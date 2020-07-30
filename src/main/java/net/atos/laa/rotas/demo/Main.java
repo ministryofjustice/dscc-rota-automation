@@ -21,9 +21,8 @@ public class Main extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     setPrimaryStage(primaryStage);
-
-    Parent root = FXMLLoader.load(getClass().getResource(
-        "../../../../../../resources/MainWindow.fxml"));
+    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(
+        "MainWindow.fxml"));
     primaryStage.setTitle("Atos LAA Rotas Demo");
     primaryStage.setScene(new Scene(root, 500, 560));
     primaryStage.setResizable(false);

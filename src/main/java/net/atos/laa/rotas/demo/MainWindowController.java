@@ -190,8 +190,8 @@ public class MainWindowController implements Initializable {
 
   public Stage showColumnDialog(LocalDate start, LocalDate end, ArrayList<Scheme> schemes)
       throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-        "../../../../../../resources/ColumnWindow.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(
+        "ColumnWindow.fxml"));
     Parent newRoot = fxmlLoader.load();
 
     Stage columnStage = new Stage();
