@@ -47,8 +47,11 @@ gradleBuild-*/
 
 # IntelliJ
 out/
+*.iml
 
 # Eclipse
 .settings
 .project
 .classpath
+
+.DS_Store
