@@ -59,8 +59,10 @@ public class ColumnTemplate {
         tempDate = tempDate.plusDays(1);
       }
     }
+    addOrRemoveIndividualDates();
+  }
 
-    // Add or remove individual dates from the list created by the pattern
+  void addOrRemoveIndividualDates() {
     if (blanksPatternModifiers != null) {
       for (BlanksModifier date : blanksPatternModifiers) {
         if (date.getModifierType() == BlanksModifierType.ADD) {
@@ -68,7 +70,6 @@ public class ColumnTemplate {
             blankSlots.add(date.getDate());
           }
         } else {
-          System.out.println("remove");
           blankSlots.remove(date.getDate());
         }
       }
@@ -89,6 +90,10 @@ public class ColumnTemplate {
 
   public ArrayList<LocalDate> getBlankSlots() {
     return blankSlots;
+  }
+
+  public void setBlankSlots(ArrayList<LocalDate> blankSlots) {
+    this.blankSlots = blankSlots;
   }
 
   public String getChosenModifiers() {
